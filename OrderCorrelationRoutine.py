@@ -8,8 +8,13 @@ inboundOrderPath = ''
 outboundOrdersSet = {}
 inboundOrdersSet = {}
 PENDING_STATUS_FILTER = "PENDING"
+outboundOrderFileCount = 0
+inboundOrderFileCount = 0
+inboundOrdersFiltered = 0
+ordersMatched = 0
 
 for filename in os.listdir(outboundOrderPath):
+    outboundOrderFileCount += 1
     tree = ET.parse(os.path.join(outboundOrderPath, filename))
     root = tree.getroot()
     # print(filename)
@@ -37,6 +42,7 @@ for filename in os.listdir(outboundOrderPath):
         outboundOrdersSet[allocId] = order
 
 for filename in os.listdir(inboundOrderPath):
+    inboundOrderFileCount += 1
     tree = ET.parse(os.path.join(inboundOrderPath, filename))
     root = tree.getroot()
     # print(filename)
@@ -64,13 +70,21 @@ for filename in os.listdir(inboundOrderPath):
             order["timestamp"] = filename[-13:filename.find(".xml")]
             # Add the order to the order set
             inboundOrdersSet[allocId] = order
+        else:
+            inboundOrdersFiltered += 1
 
 for order in list(outboundOrdersSet.keys()):
     if order in inboundOrdersSet:
-        print(order)
-
+        # print(order)
+        ordersMatched += 1
 # Validate.....
-print(outboundOrdersSet["1"])
+print("Outbound files: " + str(outboundOrderFileCount))
+print("Outbound orders: " + str(len(outboundOrdersSet)))
+print("Incoming files: " + str(inboundOrderFileCount))
+print("Incoming orders after filter: " + str(len(inboundOrdersSet)))
+print("Incoming orders filtered: " + str(inboundOrdersFiltered))
+print("Orders matched: " + str(ordersMatched))
+# print(outboundOrdersSet["1"])
 # print(generatedOrdersSet["CRD_49955655"])
-print(inboundOrdersSet["21"])
+# print(inboundOrdersSet["21"])
 # print(ordersUpdateSet["CRD_49955587"])

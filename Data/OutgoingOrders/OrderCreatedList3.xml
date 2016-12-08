@@ -4,14 +4,14 @@
 	<dt>2016-12-06T14:00:00+00:00</dt>
 	<typ>UPDATE</typ>
 	<Order>
-		<allocId>23</allocId>
+		<allocId>3</allocId>
 		<secId>V12345</secId>
 		<status>CREATED</status>
 		<creDt>2016-12-06</creDt>
 		<creTm>14:31:35</creTm>
 	</Order>
 	<Order>
-		<allocId>33</allocId>
+		<allocId>13</allocId>
 		<secId>333</secId>
 		<status>CREATED</status>
 		<creDt>2016-12-06</creDt>

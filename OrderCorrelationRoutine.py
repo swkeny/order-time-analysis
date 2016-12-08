@@ -3,12 +3,13 @@ import os
 import time
 
 # ideally all cache server files would be in one folder, and all loader files in another folder
-outboundOrderPath = '{path1}'
-inboundOrderPath = '{path2}'
-generatedOrdersSet = {}
-ordersUpdateSet = {}
+outboundOrderPath = ''
+inboundOrderPath = ''
+outboundOrdersSet = {}
+inboundOrdersSet = {}
 
 for filename in os.listdir(outboundOrderPath):
+    PENDING_STATUS_FILTER = "PENDING"
     tree = ET.parse(os.path.join(outboundOrderPath, filename))
     root = tree.getroot()
     # print(filename)
@@ -28,7 +29,7 @@ for filename in os.listdir(outboundOrderPath):
         order['status'] = status
         order['timestamp'] = filename[-13:filename.find(".xml")]
         # Add the order to the order set
-        generatedOrdersSet[allocId] = order
+        outboundOrdersSet[allocId] = order
 
 for filename in os.listdir(inboundOrderPath):
     tree = ET.parse(os.path.join(inboundOrderPath, filename))
@@ -48,17 +49,18 @@ for filename in os.listdir(inboundOrderPath):
                 allocId = child.text
             if child.tag == "status":
                 status = child.text
-        order['status'] = status
-        order['timestamp'] = filename[-13:filename.find(".xml")]
-        # Add the order to the order set
-        ordersUpdateSet[allocId] = order
+        if status == PENDING_STATUS_FILTER:
+            order['status'] = status
+            order['timestamp'] = filename[-13:filename.find(".xml")]
+            # Add the order to the order set
+            inboundOrdersSet[allocId] = order
 
-for order in list(generatedOrdersSet.keys()):
-    if order in ordersUpdateSet:
+for order in list(outboundOrdersSet.keys()):
+    if order in inboundOrdersSet:
         print(order)
 
 # Validate.....
-print(generatedOrdersSet["1"])
+print(outboundOrdersSet["1"])
 # print(generatedOrdersSet["CRD_49955655"])
-print(ordersUpdateSet["21"])
+print(inboundOrdersSet["21"])
 # print(ordersUpdateSet["CRD_49955587"])

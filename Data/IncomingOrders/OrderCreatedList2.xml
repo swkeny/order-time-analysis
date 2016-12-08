@@ -4,9 +4,9 @@
 	<dt>2016-12-06T14:00:00+00:00</dt>
 	<typ>UPDATE</typ>
 	<Order>
-		<allocId>2</allocId>
+		<allocId>22</allocId>
 		<secId>342</secId>
-		<status>CREATED</status>
+		<status>OPEN</status>
 		<creDt>2016-12-06</creDt>
 		<creTm>14:31:35</creTm>
 	</Order>

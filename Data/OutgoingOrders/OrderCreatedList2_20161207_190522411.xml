@@ -2,7 +2,7 @@
 <PortfolioOrderList>
 	<portId>TST2</portId>
 	<dt>2016-12-06T14:00:00+00:00</dt>
-	<typ>UPDATE</typ>
+	<typ>INIT</typ>
 	<Order>
 		<allocId>2</allocId>
 		<secId>222</secId>

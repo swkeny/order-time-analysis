@@ -3,15 +3,13 @@ import os
 import time
 
 # ideally all cache server files would be in one folder, and all loader files in another folder
-# outboundOrderPath = ''
-# inboundOrderPath = ''
-outboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/OutgoingOrders'
-inboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/IncomingOrders'
+outboundOrderPath = ''
+inboundOrderPath = ''
 outboundOrdersSet = {}
 inboundOrdersSet = {}
+PENDING_STATUS_FILTER = "PENDING"
 
 for filename in os.listdir(outboundOrderPath):
-    PENDING_STATUS_FILTER = "PENDING"
     tree = ET.parse(os.path.join(outboundOrderPath, filename))
     root = tree.getroot()
     # print(filename)
@@ -22,8 +20,8 @@ for filename in os.listdir(outboundOrderPath):
             portId = child.text
         if child.tag == "typ":
             type = child.text
-        order["typ"] = type
         order["portId"] = portId
+        order["typ"] = type
 
     orders = tree.findall(".//Order")
     for o in orders:

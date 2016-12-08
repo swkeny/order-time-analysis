@@ -3,8 +3,8 @@ import os
 import time
 
 # ideally all cache server files would be in one folder, and all loader files in another folder
-outboundOrderPath = ''
-inboundOrderPath = ''
+outboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/OutgoingOrders'
+inboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/IncomingOrders'
 outboundOrdersSet = {}
 inboundOrdersSet = {}
 PENDING_STATUS_FILTER = "PENDING"
@@ -77,6 +77,7 @@ for order in list(outboundOrdersSet.keys()):
     if order in inboundOrdersSet:
         # print(order)
         ordersMatched += 1
+        
 # Validate.....
 print("Outbound files: " + str(outboundOrderFileCount))
 print("Outbound orders: " + str(len(outboundOrdersSet)))

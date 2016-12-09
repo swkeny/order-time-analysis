@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as ET
 import os
-import time
-import datetime
+import csv
 
 # ideally all cache server files would be in one folder, and all loader files in another folder
-outboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/OutgoingOrders'
-inboundOrderPath = 'C:/Users/deifen/PycharmProjects/OrderCorrelation/order-time-analysis/Data/IncomingOrders'
+outboundOrderPath = ''
+inboundOrderPath = ''
 
 outboundOrdersSet = {}
 inboundOrdersSet = {}
@@ -45,11 +44,6 @@ for filename in os.listdir(outboundOrderPath):
         seconds = timestamp[4:6]
         subseconds = timestamp[6:]
         timeInSeconds = float(str(int(hours) * 60 * 60 + int(minutes) * 60 + int(seconds)) + "." + subseconds)
-
-        order["hours"] = hours
-        order["minutes"] = minutes
-        order["seconds"] = seconds
-        order["subseconds"] = subseconds
         order["timeInSeconds"] = timeInSeconds
         # Add the order to the order set
         outboundOrdersSet[allocId] = order
@@ -86,10 +80,6 @@ for filename in os.listdir(inboundOrderPath):
             seconds = timestamp[4:6]
             subseconds = timestamp[6:]
             timeInSeconds = float(str(int(hours) * 60 * 60 + int(minutes) * 60 + int(seconds)) + "." + subseconds)
-            order["hours"] = hours
-            order["minutes"] = minutes
-            order["seconds"] = seconds
-            order["subseconds"] = subseconds
             order["timeInSeconds"] = timeInSeconds
             # Add the order to the order set
             inboundOrdersSet[allocId] = order
@@ -98,20 +88,56 @@ for filename in os.listdir(inboundOrderPath):
 
 for order in list(outboundOrdersSet.keys()):
     if order in inboundOrdersSet:
-        print(inboundOrdersSet[order]["timeInSeconds"])
-        print(outboundOrdersSet[order]["timeInSeconds"])
         print(inboundOrdersSet[order]["timeInSeconds"] - outboundOrdersSet[order]["timeInSeconds"])
         ordersMatched += 1
 
-        # Validate.....
-print("Outbound files: " + str(outboundOrderFileCount))
-print("Outbound orders: " + str(len(outboundOrdersSet)))
-print("Incoming files: " + str(inboundOrderFileCount))
-print("Incoming orders after filter: " + str(len(inboundOrdersSet)))
-print("Incoming orders filtered: " + str(inboundOrdersFiltered))
-print("Orders matched: " + str(ordersMatched))
-# print(outboundOrdersSet["20161206085314UMR2_000009"])
-# print(generatedOrdersSet["CRD_49955655"])
-# print(inboundOrdersSet["21"])
-# print(ordersUpdateSet["CRD_49955587"])
+columnHeaders = "Order_Allocation_ID, Status, Message_Type, Seconds_Since_Midnight, Port_ID"
+outboundOrders = [columnHeaders]
+inboundOrders = [columnHeaders]
+
+
+for o in outboundOrdersSet:
+    tString = ""
+    k = 1
+    for i in outboundOrdersSet[o]:
+        if k == len(outboundOrdersSet[o]):
+            tString += (str(outboundOrdersSet[o][i]))
+        else:
+            tString += (str(outboundOrdersSet[o][i])) + ", "
+        k += 1
+    outboundOutputString = o + ", " + tString
+    outboundOrders.append(outboundOutputString)
+
+for o in inboundOrdersSet:
+    tString = ""
+    k = 1
+    for i in inboundOrdersSet[o]:
+        if k == len(inboundOrdersSet[o]):
+            tString += (str(inboundOrdersSet[o][i]))
+        else:
+            tString += (str(inboundOrdersSet[o][i])) + ", "
+        k += 1
+    inboundOutputString = o + ", " + tString
+    inboundOrders.append(inboundOutputString)
+
+f1 = open('outboundOrders.txt', 'w')
+f2 = open('inboundOrders.txt', 'w')
+
+for line in outboundOrders:
+  f1.write("%s\n" % line)
+
+for line in inboundOrders:
+  f2.write("%s\n" % line)
+
+
+#
+# wr = csv.writer(f, quoting=csv.QUOTE_NONE)
+# wr.writerow(outboundOrders)
+
+
+
+
+
+
+
 

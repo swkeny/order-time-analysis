@@ -134,7 +134,13 @@ for line in inboundOrders:
 # wr = csv.writer(f, quoting=csv.QUOTE_NONE)
 # wr.writerow(outboundOrders)
 
-
+       # Validate.....
+# print("Outbound files: " + str(outboundOrderFileCount))
+# print("Outbound orders: " + str(len(outboundOrdersSet)))
+# print("Incoming files: " + str(inboundOrderFileCount))
+# print("Incoming orders after filter: " + str(len(inboundOrdersSet)))
+# print("Incoming orders filtered: " + str(inboundOrdersFiltered))
+# print("Orders matched: " + str(ordersMatched))
 
 
 

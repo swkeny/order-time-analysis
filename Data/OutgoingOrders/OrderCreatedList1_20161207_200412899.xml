@@ -2,14 +2,14 @@
 <ProgramOrder>
 	<progId>TST1</progId>
 	<Order>
-		<secId>1121</secId>
+		<secId>yarr</secId>
 		<trdr>Stephen</trdr>
 		<status>CREATED</status>
 		<creDt>2016-12-08</creDt>
 		<creUsr>Myself</creUsr>
 		<Allocation>
-			<allocId>1</allocId>
-			<portId>SHIRTPANTS</portId>
+			<allocId>88</allocId>
+			<portId>HAT</portId>
 		</Allocation>	
 	</Order>
 </ProgramOrder>

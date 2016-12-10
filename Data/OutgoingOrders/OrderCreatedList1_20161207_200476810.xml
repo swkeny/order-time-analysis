@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProgramOrder>
+	<progId>TST1</progId>
+	<Order>
+		<secId>111</secId>
+		<trdr>Stephen</trdr>
+		<status>CREATED</status>
+		<creDt>2016-12-08</creDt>
+		<creUsr>Myself</creUsr>
+		<Allocation>
+			<allocId>13</allocId>
+			<portId>SOCKS1</portId>
+		</Allocation>	
+	</Order>
+	<Order>
+		<secId>111</secId>
+		<trdr>Stephen</trdr>
+		<status>CREATED</status>
+		<creDt>2016-12-08</creDt>
+		<creUsr>Myself</creUsr>
+		<Allocation>
+			<allocId>14</allocId>
+			<portId>SOCKS2</portId>
+		</Allocation>	
+	</Order>
+	<Order>
+		<secId>111</secId>
+		<trdr>Stephen</trdr>
+		<status>CREATED</status>
+		<creDt>2016-12-08</creDt>
+		<creUsr>Myself</creUsr>
+		<Allocation>
+			<allocId>15</allocId>
+			<portId>SOCKS3</portId>
+		</Allocation>	
+	</Order>
+</ProgramOrder>
+
+		
+
+
+

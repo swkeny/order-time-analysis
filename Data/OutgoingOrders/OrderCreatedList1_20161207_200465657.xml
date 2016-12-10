@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ProgramOrder>
+	<progId>TST1</progId>
+	<Order>
+		<secId>b00m</secId>
+		<trdr>Stephen</trdr>
+		<status>CREATED</status>
+		<creDt>2016-12-08</creDt>
+		<creUsr>Myself</creUsr>
+		<Allocation>
+			<allocId>22</allocId>
+			<portId>SHOES1</portId>
+		</Allocation>
+		<Allocation>
+			<allocId>23</allocId>
+			<portId>SHOES2</portId>
+		</Allocation>
+		<Allocation>
+			<allocId>24</allocId>
+			<portId>SHOES3</portId>
+		</Allocation>
+		<Allocation>
+			<allocId>25</allocId>
+			<portId>SHOES4</portId>
+		</Allocation>	
+	</Order>
+</ProgramOrder>
+
+		
+
+
+
